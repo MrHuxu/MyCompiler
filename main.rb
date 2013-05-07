@@ -96,6 +96,7 @@ tmp_tmp = 0
 		$quarternary[i][3] = (['T']+[tmp_tmp]).join
 	end
 }
+puts "============================================================================"
 0.upto($quarternary.length-1){|i|
 	if $f_w_l[i] == 'f' || $f_w_l[i] == 'e'
 		$quarternary[i][3] = i+3

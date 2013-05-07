@@ -220,7 +220,8 @@ def StxAnalyzer(m, n, o, p)
 	$ip = 0
 	while $ip < $ex.length 
 		if $Stx_list[$stack[-1]]['action'][$T.find_index($ex[$ip])] == nil
-#			puts "Error!"
+			print "line", n, ":   "
+			puts "Error!"
 			break
 		elsif $Stx_list[$stack[-1]]['action'][$T.find_index($ex[$ip])] == "acc"
 #			print "line ", n, ":   "
@@ -240,9 +241,9 @@ def StxAnalyzer(m, n, o, p)
 			end
 			$stack[$stack.length] = Integer($Stx_list[$stack[-2]]['action'][$T.find_index($ex[$ip])].split('')[1..($Stx_list[$stack[-2]]['action'][$T.find_index($ex[$ip])].split('').length-1)].join(''))
 			$smt_stack.push(0)
-		#	$stack.each{|i|print i, " "}
-		#	print "               "
-		#	print "将终结符",$stack[-2],"压入栈，并且将状态栈顶改为",$stack[-1], "\n"
+#			$stack.each{|i|print i, " "}
+#			print "               "
+#			print "将终结符",$stack[-2],"压入栈，并且将状态栈顶改为",$stack[-1], "\n"
 			$ip += 1
 		elsif $Stx_list[$stack[-1]]['action'][$T.find_index($ex[$ip])].split('')[0] == 'r'
 			rdct_tmp = Integer($Stx_list[$stack[-1]]['action'][$T.find_index($ex[$ip])].split('')[1..($Stx_list[$stack[-1]]['action'][$T.find_index($ex[$ip])].split('').length-1)].join(''))
@@ -259,9 +260,9 @@ def StxAnalyzer(m, n, o, p)
 				$smt_result.clear
 			end
 			$stack[$stack.length] = $Stx_list[$stack[-2]]['goto'][$V.find_index($line[rdct_tmp][0])]
-		#	$stack.each{|i|print i, " "}
-		#	print "               "
-		#	print "将栈中非状态指示元素按", $line[rdct_tmp], "进行归约，将非终结符", $line[rdct_tmp][0], "压入栈，并将栈顶状态指示元素改为", $stack[-1], "\n"
+#			$stack.each{|i|print i, " "}
+#			print "               "
+#			print "将栈中非状态指示元素按", $line[rdct_tmp], "进行归约，将非终结符", $line[rdct_tmp][0], "压入栈，并将栈顶状态指示元素改为", $stack[-1], "\n"
 		end
 	end
 	$stack.clear
