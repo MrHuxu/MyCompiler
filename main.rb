@@ -57,6 +57,7 @@ while j <= $sentence.length-1
 	end
 end
 
+tmp_tmp = 0
 0.upto($quarternary.length-1){|i|
 	if $quarternary[i][0] == "goto" && ($f_w_l[i-1] == 'f' || $f_w_l[i-1] == 'e')
 		$goto.push(i)
@@ -85,18 +86,29 @@ end
 			end
 		end
 	end
+	0.upto(2){|i3|
+		if $quarternary[i][i3] == 'T'
+			$quarternary[i][i3] = (['T']+[tmp_tmp]).join
+		end
+	}
+	if $quarternary[i][3] == 'T'
+		tmp_tmp = tmp_tmp + 1
+		$quarternary[i][3] = (['T']+[tmp_tmp]).join
+	end
 }
 0.upto($quarternary.length-1){|i|
 	if $f_w_l[i] == 'f' || $f_w_l[i] == 'e'
 		$quarternary[i][3] = i+3
 	end
-	print i+1, " (  "
+	print i+1, " -> ("
 	0.upto(3){|i2|
+		print '"'
 		print $quarternary[i][i2] if $quarternary[i][i2] != nil
 		print " " if $quarternary[i][i2] == nil
+		print '"'
 		print ', ' if i2 != 3
 	}
-	print "   )"
+	print ")"
 	print "\n"
 }
 puts $goto
