@@ -1,0 +1,49 @@
+S' -> S拓广文法的最初产生式
+
+声明语句：
+S -> P v  
+P -> i
+P -> r
+P -> s
+(i:int  r:real  s:string v:标识符)
+
+赋值语句：
+S -> v & E
+S -> v & o
+(E:算数表达式或标识符或整形或实型常量  o:字符串或字符型常量  &:=)
+
+输入输出语句：
+S -> v & g
+S -> p v
+S -> p o
+(g:gets  p:puts)
+
+if条件语句：
+S -> f B : S d
+S -> f B : S l : S d
+(f:if  l:else  d:end  B:布尔表达式)
+
+while循环语句：
+S -> e B : S d
+(e:while)
+
+布尔表达式：
+B -> E O E
+O -> <
+O -> >
+O -> =
+O -> !
+(=: ==  !: !=)
+
+算术表达式：
+E -> E + T
+E -> E - T
+E -> T
+T -> T * F
+T -> T / F
+T -> F
+F -> ( E )
+F -> v
+F -> m
+F -> n
+(v:标识符  m: 整形常量  n: 实型常量  通过这样的产生式组合可以按照四则运算和括号的优先顺序来进行归约)
